@@ -590,28 +590,38 @@
   gap: 10px;
 }
 
+.gallery-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 .gallery-main-view {
   width: 100%;
-  height: 450px; /* Altura ideal e controlada para a foto aparecer grande sem exageros */
+  /* Removemos a altura fixa (height: 450px/700px) que distorcia a caixa. 
+     Usamos aspect-ratio para garantir um formato de quadrado perfeito profissional (1:1), 
+     mas a caixa vai se comportar de forma fluida sem achatar a foto. */
+  aspect-ratio: 1 / 1; 
   background: var(--bg-light);
   border: 1px solid var(--border-color);
   overflow: hidden;
-  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 8px;
-}
-
-@media (min-width: 500px) {
-  .gallery-main-view {
-    height: 500px; /* Altura confortável para computadores */
-  }
 }
 
 .gallery-main-view img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Preenche 100% da caixa de ponta a ponta, sem bordas! */
-  object-position: center; /* Mantém o foco da imagem sempre centralizado */
+  object-fit: cover; /* Preenche a caixa perfeitamente de ponta a ponta sem sobrar espaços */
   border-radius: 0;
+}
+
+@media (min-width: 500px) {
+  .gallery-main-view img {
+    max-height: 550px;
+  }
 }
 
     .gallery-thumbs-list {
